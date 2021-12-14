@@ -74,6 +74,9 @@ def edit_profile(request):
 
 @login_required
 def pickup_confirm(request, customer_id):
+    logged_in_user = request.user
+    logged_in_employee = Employee.objects.get(user=logged_in_user)
+    
     if request.method == 'POST':
         Customer = apps.get_model('customers.Customer')
         customer_pickup = Customer.objects.get(pk=customer_id)
@@ -85,5 +88,6 @@ def pickup_confirm(request, customer_id):
     else:
         Customer = apps.get_model('customers.Customer')
         customer_pickup = Customer.objects.get(pk=customer_id)
-        context = {'customer_pickup': customer_pickup}
-        return render(request, 'employees/pickup_confirm.html', context)
+        context = {'customer_pickup': customer_pickup,
+                   'logged_in_employee': logged_in_employee}
+        return render (request, 'employees/pickup_confirm.html', context)
