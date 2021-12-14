@@ -4,9 +4,12 @@ from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from datetime import date
-from django.apps import apps
-from .models import Employee
 import calendar
+from django.apps import apps
+
+from trash_collector.customers.models import Customer
+from .models import Employee
+
 #from trash_collector.customers.models import Customer
 
 # Create your views here.
@@ -70,3 +73,15 @@ def edit_profile(request):
             'logged_in_employee': logged_in_employee
         }
         return render(request, 'employees/edit_profile.html', context)
+
+@login_required
+def pickup_confirm(request, customer_id):
+    try:
+        Customer = apps.get_model('customers.Customer')
+        customer_pickup = Customer.objects.get(id=customer_id)
+        customer_pickup.balance += 20
+        customer_pickup.date_of_last_pickup = date.today()
+        customer_pickup.save()
+        return render(request, 'employees:pickup_confirm.html')
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect(reverse('employees:pickup_confirm'))
