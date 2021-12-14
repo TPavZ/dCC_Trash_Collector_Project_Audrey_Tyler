@@ -6,8 +6,6 @@ from django.contrib.auth.decorators import login_required
 from datetime import date
 import calendar
 from django.apps import apps
-
-from trash_collector.customers.models import Customer
 from .models import Employee
 
 #from trash_collector.customers.models import Customer
@@ -76,12 +74,16 @@ def edit_profile(request):
 
 @login_required
 def pickup_confirm(request, customer_id):
-    try:
+    if request.method == 'POST':
         Customer = apps.get_model('customers.Customer')
-        customer_pickup = Customer.objects.get(id=customer_id)
+        customer_pickup = Customer.objects.get(pk=customer_id)
         customer_pickup.balance += 20
         customer_pickup.date_of_last_pickup = date.today()
         customer_pickup.save()
-        return render(request, 'employees:pickup_confirm.html')
-    except ObjectDoesNotExist:
-        return HttpResponseRedirect(reverse('employees:pickup_confirm'))
+        return HttpResponseRedirect(reverse('employees:index'))
+    
+    else:
+        Customer = apps.get_model('customers.Customer')
+        customer_pickup = Customer.objects.get(pk=customer_id)
+        context = {'customer_pickup': customer_pickup}
+        return render(request, 'employees/pickup_confirm.html', context)

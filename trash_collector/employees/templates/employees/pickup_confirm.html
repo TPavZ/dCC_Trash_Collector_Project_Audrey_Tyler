@@ -1,0 +1,21 @@
+{% extends 'employees\employee_base.html' %}
+
+{% block title %}{% block header %} Employee Confirm Pick-Up {% endblock %}{% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    Hello Employee {{ user.username }}!
+    <br>
+    <h1>Confirming pickup?</h1>
+    <form action ="{% url 'employees:pickup_confirm' customer.id %}" method="post">
+        {% csrf_token %}
+        <input class="btn btn-danger button" type="submit" value="Yes">
+        <!-- adding space between yes and cancel -->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="button" href="{% url 'employees:index' %}">Cancel</a>
+    </form>
+  {% else %}
+    <p>You are at the employee index, but you are not logged in.</p>
+    <a href="{% url 'login' %}">Log In</a>
+    <a href="{% url 'accounts:register' %}">Sign Up</a>
+  {% endif %}
+{% endblock %}

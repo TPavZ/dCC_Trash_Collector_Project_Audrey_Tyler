@@ -9,14 +9,14 @@
     <h1>Customers with weekday pickup today:</h1>
     <ul>
       {% for customer in customer_weekday_pickup %}
-      <li>{{customer.name}}<a href="{% url 'employees:pickup_confirm' customer.id %}">Confirm Pickup</a></li>
+      <li>{{customer.name}} <a href="{% url 'employees:pickup_confirm' customer.id %}">Confirm Pickup</a></li>
       {% endfor %}
     </ul>
 
     <h1>Customers with one-time pickup today:</h1>
     <ul>
       {% for customer in customer_onetime_pickup %}
-      <li>{{customer.name}}<a href="{% url 'employees:pickup_confirm' customer.id %}">Confirm Pickup</a></li>
+      <li>{{customer.name}} <a href="{% url 'employees:pickup_confirm' customer.id %}">Confirm Pickup</a></li>
       {% endfor %}
     </ul>
 
