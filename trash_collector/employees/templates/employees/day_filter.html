@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} View Pickups {% endblock %}
+
+{% block header %} Pickup for weekday {% endblock %}
+
+{% block content %}
+
+<form action="{% url 'employees:day_filter' %}" method="post">
+    {% csrf_token %}
+    <p>Weekday to view: </p>
+    <select name="day" id="day">
+        <option>Sunday</option>
+        <option>Monday</option>
+        <option>Tuesday</option>
+        <option>Wednesday</option>
+        <option>Thursday</option>
+        <option>Friday</option>
+        <option>Saturday</option>
+      </select>
+
+    <input type="submit" value="View Day">
+</form>
+
+<a href="{% url 'employees:index' %}">Home</a>
+
+{% endblock %}

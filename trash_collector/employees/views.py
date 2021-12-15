@@ -91,3 +91,27 @@ def pickup_confirm(request, customer_id):
         context = {'customer_pickup': customer_pickup,
                    'logged_in_employee': logged_in_employee}
         return render (request, 'employees/pickup_confirm.html', context)
+
+@login_required
+def day_filter(request):
+    
+    logged_in_user = request.user
+    logged_in_employee = Employee.objects.get(user=logged_in_user)
+
+    if request.method == 'POST':
+        day_from_form = request.POST.get('day')
+        Customer = apps.get_model('customers.Customer')
+        
+        customer_day_pickup = Customer.objects.filter(zip_code=logged_in_employee.zip_code).filter(weekly_pickup=day_from_form)
+        
+        data_visualization = [item for item in customer_day_pickup]
+        
+        context ={
+            'day': day_from_form,
+            'logged_in_employee': logged_in_employee,
+            'customer_day_pickup': customer_day_pickup
+        }
+        return render(request, 'employees/day_selection.html', context)
+
+    else:
+        return render(request, 'employees/day_filter.html')
