@@ -8,6 +8,14 @@
     <br>
     <h1>{{customer.name}} location: </h1>
     {{customer_address}}
+
+    <iframe
+    width="450"
+    height="250"
+    frameborder="0" style="border:0"
+    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCv19bQtOUf8W5Fmsym-RSswEVe7w3aXYw&q={{customer_url}}" allowfullscreen>
+    </iframe>
+
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>
