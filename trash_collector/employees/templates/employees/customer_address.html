@@ -1,20 +1,22 @@
 {% extends 'employees\employee_base.html' %}
 
-{% block title %}{% block header %} View Customer Address {% endblock %}{% endblock %}
+{% block title %}{% block header %} {% endblock %}{% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
-    Hello Employee {{ user.username }}!
-    <br>
     <h1>{{customer.name}} location: </h1>
-    {{customer_full_address}}
+    <p> Address & Zip Code: {{customer_full_address}}</p>
 
-    <iframe
-    width="450"
-    height="250"
-    frameborder="0" style="border:0"
-    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCv19bQtOUf8W5Fmsym-RSswEVe7w3aXYw&q={{customer_url}}" allowfullscreen>
-    </iframe>
+    <p>
+      <iframe
+      width="450"
+      height="250"
+      frameborder="0" style="border:0"
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCv19bQtOUf8W5Fmsym-RSswEVe7w3aXYw&q={{customer_url}}" allowfullscreen>
+      </iframe>
+    </p>
+
+    <button><a href="{% url 'employees:index' %}">Home</a></button>
 
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>

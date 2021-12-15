@@ -8,6 +8,7 @@ import calendar
 from django.apps import apps
 from .models import Employee
 import urllib.parse #will parse address into url-encoded string
+import json
 
 #from trash_collector.customers.models import Customer
 
@@ -30,6 +31,16 @@ def index(request):
         customer_weekday_pickup = Customer.objects.filter(zip_code=logged_in_employee.zip_code).filter(weekly_pickup=today_weekday).exclude(date_of_last_pickup=today).exclude(suspend_start__lte=today, suspend_end__gte=today)
         customer_onetime_pickup = Customer.objects.filter(zip_code=logged_in_employee.zip_code).filter(one_time_pickup=today).exclude(date_of_last_pickup=today).exclude(suspend_start__lte=today, suspend_end__gte=today)
         
+        customer_addresses = []
+        
+        for customer in customer_weekday_pickup:
+            address = customer.address + ' '+ customer.zip_code
+            customer_addresses.append(address)
+        
+        for customer in customer_onetime_pickup:
+            address = customer.address + ' '+ customer.zip_code
+            customer_addresses.append(address)
+        
         data_visualization = [item for item in customer_weekday_pickup]
         
         context ={
@@ -37,6 +48,7 @@ def index(request):
             'today': today,
             'customer_weekday_pickup': customer_weekday_pickup,
             'customer_onetime_pickup': customer_onetime_pickup,
+            'customer_addresses': json.dumps(customer_addresses)
         }
         return render(request, 'employees/index.html', context)
 
@@ -126,7 +138,7 @@ def customer_address(request, customer_id):
     customer = Customer.objects.get(pk=customer_id)
     customer_address = customer.address
     customer_zip = customer.zip_code
-    customer_full_address = customer_address + customer_zip
+    customer_full_address = customer_address + ' '+ customer_zip
     customer_url = urllib.parse.quote(customer_full_address)
     
     context = {'customer': customer,

@@ -1,28 +1,59 @@
 {% extends 'employees\employee_base.html' %}
 
-{% block title %}{% block header %} Employee Home {% endblock %}{% endblock %}
+{% block title %}
+{% block header %} Employee Home: {{user.username}} {% endblock %}
+{% endblock %}
+
 
 {% block content %}
-  {% if user.is_authenticated %}
-    Hello Employee {{ user.username }}!
-    <br>
-    <h1>Customers with weekday pickup today:</h1>
-    <ul>
-      {% for customer in customer_weekday_pickup %}
-      <li>{{customer.name}} <a href="{% url 'employees:pickup_confirm' customer.id %}">Confirm Pickup</a> <a href="{% url 'employees:customer_address' customer.id %}">View Address</a></li>
-      {% endfor %}
-    </ul>
+{% if user.is_authenticated %}
 
-    <h1>Customers with one-time pickup today:</h1>
-    <ul>
-      {% for customer in customer_onetime_pickup %}
-      <li>{{customer.name}} <a href="{% url 'employees:pickup_confirm' customer.id %}">Confirm Pickup</a> <a href="{% url 'employees:customer_address' customer.id %}">View Address</a></li>
-      {% endfor %}
-    </ul>
+<div class="container-fluid">
+      <div class="row">
+        <table class="center-table">
+          <thead>
+            <th> Customer with weekly pickup today</th>
+            <tr>
+                  <th>Customer name</th><th>Confirm Pickup</th><th>Address</th>
+              </tr>
+          </thead>
+          <tbody>
+            {% for customer in customer_weekday_pickup %}
+            <tr>
+                  <td>{{customer.name}}</td>
+                  <td> <a href="{% url 'employees:pickup_confirm' customer.id %}">Confirm Pickup</a></td>
+                  <td> <a href="{% url 'employees:customer_address' customer.id %}">View Address</a></td>
+                  {% endfor %}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="row">
+        <table class="center-table">
+          <thead>
+            <th> Customer with one-time pickup today</th>
+            <tr>
+                  <th>Customer name</th><th>Confirm Pickup</th><th>Address</th>
+              </tr>
+          </thead>
+          <tbody>
+            {% for customer in customer_onetime_pickup %}
+            <tr>
+                <td>{{customer.name}}</td>
+                <td><a href="{% url 'employees:pickup_confirm' customer.id %}">Confirm Pickup</a></td>
+                <td><a href="{% url 'employees:customer_address' customer.id %}">View Address</a></td>
+                {% endfor %}
+            </tr>
+          </tbody>
+      </table>
+    </div>
+  <div>
 
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>
     <a href="{% url 'accounts:register' %}">Sign Up</a>
   {% endif %}
+
 {% endblock %}

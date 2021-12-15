@@ -2,13 +2,12 @@
 
 {% block title %} View Pickups {% endblock %}
 
-{% block header %} Pickup for weekday {% endblock %}
+{% block header %} Weekday to view: {% endblock %}
 
 {% block content %}
 
 <form action="{% url 'employees:day_filter' %}" method="post">
     {% csrf_token %}
-    <p>Weekday to view: </p>
     <select name="day" id="day">
         <option>Sunday</option>
         <option>Monday</option>
