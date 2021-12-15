@@ -125,9 +125,13 @@ def customer_address(request, customer_id):
     Customer = apps.get_model('customers.Customer')
     customer = Customer.objects.get(pk=customer_id)
     customer_address = customer.address
-    customer_url = urllib.parse.quote(customer_address)
+    customer_zip = customer.zip_code
+    customer_full_address = customer_address + customer_zip
+    customer_url = urllib.parse.quote(customer_full_address)
+    
     context = {'customer': customer,
                 'logged_in_employee': logged_in_employee,
-                'customer_address': customer_address,
+                'customer_full_address': customer_full_address,
                 'customer_url': customer_url}
+    
     return render (request, 'employees/customer_address.html', context)
