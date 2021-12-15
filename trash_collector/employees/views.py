@@ -115,3 +115,16 @@ def day_filter(request):
 
     else:
         return render(request, 'employees/day_filter.html')
+
+@login_required
+def customer_address(request, customer_id):
+    logged_in_user = request.user
+    logged_in_employee = Employee.objects.get(user=logged_in_user)
+
+    Customer = apps.get_model('customers.Customer')
+    customer = Customer.objects.get(pk=customer_id)
+    customer_address = customer.address
+    context = {'customer': customer,
+                'logged_in_employee': logged_in_employee,
+                'customer_address': customer_address}
+    return render (request, 'employees/customer_address.html', context)

@@ -10,5 +10,5 @@ urlpatterns = [
     path('edit_profile/', views.edit_profile, name="edit_profile"),
     path('<int:customer_id>/pickup_confirm/', views.pickup_confirm, name="pickup_confirm"),
     path('day_filter', views.day_filter, name="day_filter"),
-
+    path('<int:customer_id>/address/', views.customer_address, name="customer_address"),
 ]
