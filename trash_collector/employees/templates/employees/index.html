@@ -1,7 +1,7 @@
 {% extends 'employees\employee_base.html' %}
 
 {% block title %}
-{% block header %} Employee Home: {{user.username}} {% endblock %}
+{% block header %} Welcome To The Employee Portal: {{logged_in_employee.name}} {% endblock %}
 {% endblock %}
 
 
@@ -9,52 +9,65 @@
 {% if user.is_authenticated %}
 
 <div class="container-fluid">
-      <div class="row">
-        <table class="center-table">
-          <thead>
-            <th> Customer with weekly pickup today</th>
+    <table class="table">
+      <h3> Today is
+        <script type="text/javascript">
+          var myDate = new Date();
+          var myDay = myDate.getDay();     
+          var weekday = ['Sunday', 'Monday', 'Tuesday',
+              'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+          document.write(weekday[myDay]);
+        </script>. Here are the scheduled pickups:
+      </h3>
+
+        <thead>
+          <div class="table_header">
             <tr>
-                  <th>Customer name</th><th>Confirm Pickup</th><th>Address</th>
-              </tr>
-          </thead>
-          <tbody>
-            {% for customer in customer_weekday_pickup %}
-            <tr>
-                  <td>{{customer.name}}</td>
-                  <td>
-                    <a href="{% url 'employees:pickup_confirm' customer.id %}" class="btn btn-outline-light" target="popup" onClick="window.open('{% url 'employees:pickup_confirm' customer.id %}','popup','width=500, height=400, top=500')">
-                    Confirm Pickup</a></td>
-                  <td> <a href="{% url 'employees:customer_address' customer.id %}" class="btn btn-outline-light">View Address</a></td>
-                  {% endfor %}
+                <th scope="col">Customer Name</th>
+                <th scope="col">Confirm Pickup</th>
+                <th scope="col">Address</th>
             </tr>
+          </div>
+        </thead>
+          <tbody>
+              {% for customer in customer_weekday_pickup %}
+              <tr>            
+                <th scope="row">{{customer.name}}</th>
+                <td><a href="{% url 'employees:pickup_confirm' customer.id %}" class="btn btn-outline-light" target="popup" onClick="window.open('{% url 'employees:pickup_confirm' customer.id %}','popup','width=500, height=400, top=500')">
+                      Confirm Pickup</a></td>
+                <td><a href="{% url 'employees:customer_address' customer.id %}" class="btn btn-outline-light">View Address</a></td> 
+              </tr>          
+              {% endfor %}
           </tbody>
-        </table>
-      </div>
-      
-      <div class="row">
-        <table class="center-table">
-          <thead>
-            <th> Customer with one-time pickup today</th>
+    </table>
+    <table class="table">
+      <h3>Customers scheduled for A one time pickup Today:</h3>
+        <thead>
+          <div class="table_header">
             <tr>
-                  <th>Customer name</th><th>Confirm Pickup</th><th>Address</th>
-              </tr>
-          </thead>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Confirm Pickup</th>
+                <th scope="col">Address</th>
+            </tr>
+          </div>
+        </thead>
           <tbody>
             {% for customer in customer_onetime_pickup %}
-            <tr>
-                <td>{{customer.name}}</td>
-                <td>
-                  <a href="{% url 'employees:pickup_confirm' customer.id %}" class="btn btn-outline-light" target="popup" onClick="window.open('{% url 'employees:pickup_confirm' customer.id %}','popup','width=400, height=150, top=500')">
-                    Confirm Pickup</a></td>
-                <td><a href="{% url 'employees:customer_address' customer.id %}" class="btn btn-outline-light">View Address</a></td>
-                {% endfor %}
-            </tr>
+              <tr>            
+                <th scope="row">{{customer.name}}</th>
+                <td><a href="{% url 'employees:pickup_confirm' customer.id %}" class="btn btn-outline-light" target="popup" onClick="window.open('{% url 'employees:pickup_confirm' customer.id %}','popup','width=500, height=400, top=500')">
+                      Confirm Pickup</a></td>
+                <td><a href="{% url 'employees:customer_address' customer.id %}" class="btn btn-outline-light">View Address</a></td> 
+              </tr>          
+              {% endfor %}
           </tbody>
-      </table>
-    </div>
-  <div>
+    </table>     
+</div>
+<div class="lol">
+  NOW GET TO WORK!
+</div>
 
-  {% else %}
+{% else %}
     <p>You are at the employee index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>
     <a href="{% url 'accounts:register' %}">Sign Up</a>

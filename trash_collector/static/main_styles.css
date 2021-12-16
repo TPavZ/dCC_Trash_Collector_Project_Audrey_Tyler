@@ -11,7 +11,11 @@ ul {
 }
 
 h1 {
-    color: crimson;
+    color: rgb(255, 255, 255);
+    font-weight: 200;
+    float: center;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.507);
 }
 
 p {
@@ -24,4 +28,18 @@ p {
 
 .col-8, th {
     text-align: center;
+}
+
+.lol {
+    color:white;
+    font-size: 40%;
+}
+
+tr, th {
+    color: cadetblue;
+}
+
+
+.table_header, th {
+    color: rgb(17, 233, 150);
 }
