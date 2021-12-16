@@ -8,9 +8,11 @@
     <h1>Confirming pickup for {{customer_pickup.name}}?</h1>
     <form action ="{% url 'employees:pickup_confirm' customer_pickup.id %}" method="post">
         {% csrf_token %}
-        <input class="btn btn-danger button center" type="submit" value="Yes" name="confirm" id='confirm'>
+        <button type="submit" value="Yes" name="confirm" id="confirm" class="btn btn-outline-light">Confirm</button>
+        <!--<input class="btn btn-danger button center" type="submit" value="Yes" name="confirm" id='confirm'>-->
         <!-- adding space between yes and cancel -->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input class="btn btn-danger button center" type="submit" value="No" name="cancel" id='cancel'>
+        <button type="submit" value="No" name="cancel" id="cancel" class="btn btn-outline-light">Cancel</button>
+        <!--<input class="btn btn-danger button center" type="submit" value="No" name="cancel" id='cancel'>-->
     </form>
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
