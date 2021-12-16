@@ -16,7 +16,7 @@
       </iframe>
     </p>
 
-    <button><a href="{% url 'employees:index' %}">Home</a></button>
+    <a href="{% url 'employees:index' %}" class="btn btn-outline-light">Home</a>
     
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
