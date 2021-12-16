@@ -17,7 +17,7 @@
     </p>
 
     <button><a href="{% url 'employees:index' %}">Home</a></button>
-
+    
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>

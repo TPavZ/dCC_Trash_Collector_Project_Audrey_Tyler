@@ -13,7 +13,7 @@
     <br />
     Zip Code: <input type="text" name="zip_code" id="zip_code" value="{{logged_in_employee.zip_code}}">
     <br />    
-    <input type="submit" value="Submit"> <a class="button" href="{% url 'employees:index' %}">Cancel</a>
+    <button type="submit" value="Submit" class="btn btn-outline-light">Submit</button> <a href="{% url 'employees:index' %}" class="btn btn-outline-light">Cancel</a>
 </form>
 
 {% endblock %}

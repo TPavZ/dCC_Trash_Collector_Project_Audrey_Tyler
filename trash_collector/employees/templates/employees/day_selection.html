@@ -2,16 +2,16 @@
 
 {% block title %} View Pickups {% endblock %}
 
-{% block header %} Customers with weekday pickup day: {{day}} {% endblock %}
+{% block header %} {{day}}'s Scheduled Pickups:  {% endblock %}
 
 {% block content %}
 
     <ul>
       {% for customer in customer_day_pickup %}
-      <li>{{customer.name}}</li>
+      <h4><li>{{customer.name}}</li></h4>
       {% endfor %}
     </ul>
 
-    <button><a href="{% url 'employees:index' %}">Home</a></button>
-    <button><a href="{% url 'employees:day_filter'%}">Select New Day</a></button>
+    <a href="{% url 'employees:index' %}" class="btn btn-outline-light">Home</a>
+    <a href="{% url 'employees:day_filter'%}" class="btn btn-outline-light">Select New Day</a>
 {% endblock %}

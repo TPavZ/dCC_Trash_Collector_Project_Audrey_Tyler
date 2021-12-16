@@ -6,21 +6,23 @@
 
 {% block content %}
 
-<form action="{% url 'employees:day_filter' %}" method="post">
-    {% csrf_token %}
-    <select name="day" id="day">
-        <option>Sunday</option>
-        <option>Monday</option>
-        <option>Tuesday</option>
-        <option>Wednesday</option>
-        <option>Thursday</option>
-        <option>Friday</option>
-        <option>Saturday</option>
-      </select>
+<div class="dropdown">
+  <form action="{% url 'employees:day_filter' %}" method="post">
+      {% csrf_token %}
+      <select name="day" id="day">
+          <option>Sunday</option>
+          <option>Monday</option>
+          <option>Tuesday</option>
+          <option>Wednesday</option>
+          <option>Thursday</option>
+          <option>Friday</option>
+          <option>Saturday</option>
+        </select>
 
-    <input type="submit" value="View Day">
-</form>
-
-<a href="{% url 'employees:index' %}">Home</a>
+      <button type="submit" value="Submit" class="btn btn-outline-light">View Day</button>
+  </form>
+</div>
+<br>
+<a href="{% url 'employees:index' %}" class="btn btn-outline-light">Home</a>
 
 {% endblock %}

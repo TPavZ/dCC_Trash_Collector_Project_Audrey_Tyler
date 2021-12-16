@@ -3,7 +3,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-    background-size: cover;
+    background-size: cover;    
 }
 
 ul {
@@ -11,28 +11,5 @@ ul {
 }
 
 h1 {
-    color: cornsilk;
-}
-
-table, td, th {  
-    border: 1px solid #ddd;
-    text-align: left;
-}
-  
-table {
-    border-collapse: collapse;
-    width: 40%;
-    background-color: cornsilk;
-}
-
-th {
-    background-color: cornsilk;
-}
-
-td {
-    background-color: #bebdbd;
-}
-  
-th, td {
-    padding: 15px;
+    color: crimson;
 }
