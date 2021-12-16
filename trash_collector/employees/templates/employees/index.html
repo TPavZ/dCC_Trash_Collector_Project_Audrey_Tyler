@@ -21,7 +21,9 @@
             {% for customer in customer_weekday_pickup %}
             <tr>
                   <td>{{customer.name}}</td>
-                  <td> <a href="{% url 'employees:pickup_confirm' customer.id %}">Confirm Pickup</a></td>
+                  <td>
+                    <a href="{% url 'employees:pickup_confirm' customer.id %}" target="popup" onClick="window.open('{% url 'employees:pickup_confirm' customer.id %}','popup','width=500, height=400, top=500')">
+                    Confirm Pickup</a></td>
                   <td> <a href="{% url 'employees:customer_address' customer.id %}">View Address</a></td>
                   {% endfor %}
             </tr>
@@ -41,7 +43,9 @@
             {% for customer in customer_onetime_pickup %}
             <tr>
                 <td>{{customer.name}}</td>
-                <td><a href="{% url 'employees:pickup_confirm' customer.id %}">Confirm Pickup</a></td>
+                <td>
+                  <a href="{% url 'employees:pickup_confirm' customer.id %}" target="popup" onClick="window.open('{% url 'employees:pickup_confirm' customer.id %}','popup','width=400, height=150, top=500')">
+                    Confirm Pickup</a></td>
                 <td><a href="{% url 'employees:customer_address' customer.id %}">View Address</a></td>
                 {% endfor %}
             </tr>

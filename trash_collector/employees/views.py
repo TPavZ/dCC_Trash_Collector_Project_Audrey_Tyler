@@ -91,12 +91,16 @@ def pickup_confirm(request, customer_id):
     logged_in_employee = Employee.objects.get(user=logged_in_user)
     
     if request.method == 'POST':
-        Customer = apps.get_model('customers.Customer')
-        customer_pickup = Customer.objects.get(pk=customer_id)
-        customer_pickup.balance += 20
-        customer_pickup.date_of_last_pickup = date.today()
-        customer_pickup.save()
-        return HttpResponseRedirect(reverse('employees:index'))
+        confirm = request.POST.get('confirm')
+        if confirm == 'Yes':
+            Customer = apps.get_model('customers.Customer')
+            customer_pickup = Customer.objects.get(pk=customer_id)
+            customer_pickup.balance += 20
+            customer_pickup.date_of_last_pickup = date.today()
+            customer_pickup.save()
+            return HttpResponse('<script type="text/javascript">window.close(); window.opener.location.reload();</script>')
+        else:
+            return HttpResponse('<script type="text/javascript">window.close();</script>')
     
     else:
         Customer = apps.get_model('customers.Customer')
@@ -113,18 +117,22 @@ def day_filter(request):
 
     if request.method == 'POST':
         day_from_form = request.POST.get('day')
-        Customer = apps.get_model('customers.Customer')
+        if day_from_form is None:
+            day_statement = 'Please Select A Day From Above'
+        else:
+            day_statement = str(day_from_form) + "'s" +' ' + 'Scheduled' + ' ' +'Pickups'
         
+        Customer = apps.get_model('customers.Customer')
         customer_day_pickup = Customer.objects.filter(zip_code=logged_in_employee.zip_code).filter(weekly_pickup=day_from_form)
         
         data_visualization = [item for item in customer_day_pickup]
         
         context ={
-            'day': day_from_form,
+            'day': day_statement,
             'logged_in_employee': logged_in_employee,
             'customer_day_pickup': customer_day_pickup
         }
-        return render(request, 'employees/day_selection.html', context)
+        return render(request, 'employees/day_filter.html', context)
 
     else:
         return render(request, 'employees/day_filter.html')

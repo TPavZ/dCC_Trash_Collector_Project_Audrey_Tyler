@@ -10,6 +10,7 @@
   <form action="{% url 'employees:day_filter' %}" method="post">
       {% csrf_token %}
       <select name="day" id="day">
+          <option value="None" selected disabled hidden>Select Weekday</option>
           <option>Sunday</option>
           <option>Monday</option>
           <option>Tuesday</option>
@@ -23,6 +24,16 @@
   </form>
 </div>
 <br>
-<a href="{% url 'employees:index' %}" class="btn btn-outline-light">Home</a>
+
+
+<h1> {{day}}</h1>
+
+    <ul>
+      {% for customer in customer_day_pickup %}
+      <h4><li>{{customer.name}}</li></h4>
+      {% endfor %}
+    </ul>
+
+    <a href="{% url 'employees:index' %}" class="btn btn-outline-light">Home</a>
 
 {% endblock %}

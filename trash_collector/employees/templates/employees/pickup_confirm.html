@@ -1,4 +1,4 @@
-{% extends 'employees\employee_base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}{% block header %}  {% endblock %}{% endblock %}
 
@@ -8,9 +8,9 @@
     <h1>Confirming pickup for {{customer_pickup.name}}?</h1>
     <form action ="{% url 'employees:pickup_confirm' customer_pickup.id %}" method="post">
         {% csrf_token %}
-        <input class="btn btn-danger button" type="submit" value="Yes">
+        <input class="btn btn-danger button center" type="submit" value="Yes" name="confirm" id='confirm'>
         <!-- adding space between yes and cancel -->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a class="button" href="{% url 'employees:index' %}">Cancel</a>
+        <input class="btn btn-danger button center" type="submit" value="No" name="cancel" id='cancel'>
     </form>
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
