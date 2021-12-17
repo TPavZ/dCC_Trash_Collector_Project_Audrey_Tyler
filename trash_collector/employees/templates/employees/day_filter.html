@@ -2,7 +2,7 @@
 
 {% block title %} View Pickups {% endblock %}
 
-{% block header %} Weekday to view: {% endblock %}
+{% block header %} Filter Customer Pickups By Day {% endblock %}
 
 {% block content %}
 <div class="container">
@@ -30,12 +30,14 @@
 
   <ul>
     {% for customer in customer_day_pickup %}
-    <h4><li>{{customer.name}}</li></h4>
+    <h4><li>{{customer.name}}   <a href="{% url 'employees:customer_address' customer.id %}" class="btn btn-outline-light" target="popup" onClick="window.open('{% url 'employees:pickup_confirm' customer.id %}','popup','width=500, height=400, top=500')">View Address</a></li></h4> 
     {% endfor %}
   </ul>
+  
 
   <div>
     <a href="{% url 'employees:index' %}" class="btn btn-outline-light">Home</a>
   </div>
 </div>
 {% endblock %}
+

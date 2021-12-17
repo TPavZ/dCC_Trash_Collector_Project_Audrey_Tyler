@@ -5,7 +5,7 @@
 {% block content %}
 {% if user.is_authenticated %}
     <br>
-    <h1>Confirming pickup for {{customer_pickup.name}}?</h1>
+    <h1>Trash For <strong>{{customer_pickup.name}}</strong> Has Been Picked Up?</h1>
     <form action ="{% url 'employees:pickup_confirm' customer_pickup.id %}" method="post">
         {% csrf_token %}
         <button type="submit" value="Yes" name="confirm" id="confirm" class="btn btn-outline-light">Confirm</button>

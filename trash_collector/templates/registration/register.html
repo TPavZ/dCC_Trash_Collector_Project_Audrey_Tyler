@@ -6,10 +6,12 @@
 
 {% block content %}
 <br />
-  <form method="post" align="left">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-outline-light" >Sign Up</button>
-  </form>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-outline-light" >Sign Up</button>
   <p>Already Registered? <a href='{% url "login" %}' class="btn btn-outline-light">Sign in</a></p>
+</form>
+  
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'employees\employee_base.html' %}
 
 {% block title %}
-{% block header %} Welcome To The Employee Portal: {{logged_in_employee.name}} {% endblock %}
+{% block header %} Welcome To The Employee Portal: <strong>{{logged_in_employee.name}}</strong> {% endblock %}
 {% endblock %}
 
 
@@ -17,7 +17,7 @@
           var weekday = ['Sunday', 'Monday', 'Tuesday',
               'Wednesday', 'Thursday', 'Friday', 'Saturday'];
           document.write(weekday[myDay]);
-        </script>. Here are the scheduled pickups:
+        </script>. Here are your scheduled pickups:
       </h3>
 
         <thead>
@@ -30,18 +30,19 @@
           </div>
         </thead>
           <tbody>
+            <div class="table_body">
               {% for customer in customer_weekday_pickup %}
               <tr>            
-                <th scope="row">{{customer.name}}</th>
-                <td><a href="{% url 'employees:pickup_confirm' customer.id %}" class="btn btn-outline-light" target="popup" onClick="window.open('{% url 'employees:pickup_confirm' customer.id %}','popup','width=500, height=400, top=500')">
-                      Confirm Pickup</a></td>
-                <td><a href="{% url 'employees:customer_address' customer.id %}" class="btn btn-outline-light">View Address</a></td> 
+                <td scope="row">{{customer.name}}</td>
+                <td><a href="{% url 'employees:pickup_confirm' customer.id %}" class="btn btn-outline-light">Confirm Pickup</a></td>
+                <td><a href="{% url 'employees:customer_address' customer.id %}" class="btn btn-outline-light" target="popup" onClick="window.open('{% url 'employees:pickup_confirm' customer.id %}','popup','width=500, height=400, top=500')">View Address</a></td> 
               </tr>          
               {% endfor %}
+            </div> 
           </tbody>
     </table>
     <table class="table">
-      <h3>Customers scheduled for A one time pickup Today:</h3>
+      <h3>Customers scheduled for a one time pickup Today:</h3>
         <thead>
           <div class="table_header">
             <tr>
@@ -55,19 +56,13 @@
             {% for customer in customer_onetime_pickup %}
               <tr>            
                 <th scope="row">{{customer.name}}</th>
-                <td><a href="{% url 'employees:pickup_confirm' customer.id %}" class="btn btn-outline-light" target="popup" onClick="window.open('{% url 'employees:pickup_confirm' customer.id %}','popup','width=500, height=400, top=500')">
-                      Confirm Pickup</a></td>
-                <td><a href="{% url 'employees:customer_address' customer.id %}" class="btn btn-outline-light">View Address</a></td> 
+                <td><a href="{% url 'employees:pickup_confirm' customer.id %}" class="btn btn-outline-light">Confirm Pickup</a></td>
+                <td><a href="{% url 'employees:customer_address' customer.id %}" class="btn btn-outline-light" target="popup" onClick="window.open('{% url 'employees:pickup_confirm' customer.id %}','popup','width=500, height=400, top=500')">View Address</a></td> 
               </tr>          
               {% endfor %}
           </tbody>
     </table> 
      
-</div>
-
-
-<div class="lol">
-  NOW GET TO WORK!
 </div>
 
 <div class="map">
@@ -102,6 +97,12 @@
         }
 
   </script>
+</div>
+
+<div class="lol">
+  <br>
+  NOW GET TO WORK!
+  <br>
 </div>
 
   {% else %}
