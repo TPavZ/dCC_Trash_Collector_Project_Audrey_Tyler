@@ -1,6 +1,20 @@
-{% extends 'employees\employee_base.html' %}
-
-{% block title %}{% block header %} {% endblock %}{% endblock %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="TBD">
+    <meta name="discription" content="devCodeCamp group Trash Collection Project">
+    <meta name="authors" content="Brett Johnson, Audrey Schmidt, & Tyler Pavlic">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main_styles.css' %}">
+    <link rel="shortcut icon" type="image.png" href="\static\images\TrashCan.png">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUTH1JPHH82s6RwEXGyPT0UdnVh_KTDhw"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
 
 {% block content %}
 {% if user.is_authenticated %}
@@ -17,7 +31,6 @@
     </p>
     <div class="button">      
       <button type="button" class="btn btn-outline-light" onclick="javascript:window.close()">Close</button>
-      <a href="{% url 'employees:index' %}" class="btn btn-outline-light">Home</a>
     </div>
     
   {% else %}
