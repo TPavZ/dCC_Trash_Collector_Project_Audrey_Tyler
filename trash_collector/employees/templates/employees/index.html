@@ -61,28 +61,25 @@
               </tr>          
               {% endfor %}
           </tbody>
-    </table>     
+    </table> 
+     
 </div>
+
+
 <div class="lol">
   NOW GET TO WORK!
 </div>
 
-
+<div class="row">
   <div id="map" style="width: 500px; height: 400px;"></div>
   
   <script type="text/javascript">
-
-      var locations = [
-      ['Bondi Beach', -33.890542, 151.274856],
-      ['Coogee Beach', -33.923036, 151.259052],
-      ['Cronulla Beach', -34.028249, 151.157507],
-      ['Manly Beach', -33.80010128657071, 151.28747820854187],
-      ['Maroubra Beach', -33.950198, 151.259302]
-        ];
+    var locations = {{customer_addresses|safe}};
+    console.log(locations)
 
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 10,
-          center: new google.maps.LatLng(-33.92, 151.25),
+          center: new google.maps.LatLng(42.97181286683933, -88.01547525330066),
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
         
@@ -105,7 +102,7 @@
         }
 
   </script>
-
+</div>
 
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>

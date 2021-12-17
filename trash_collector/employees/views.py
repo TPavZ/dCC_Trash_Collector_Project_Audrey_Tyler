@@ -11,12 +11,13 @@ import urllib.parse #will parse address into url-encoded string
 import json
 import requests
 
+
 #from trash_collector.customers.models import Customer
 
 # Create your views here.
 # TODO: Create a function for each path created in employees/urls.py. Each will need a template as well.
 
-def get_lat_long(address, formatted_address):
+def get_lat_long(name, formatted_address):
     GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?' + 'address=' + formatted_address + '&key=AIzaSyAdcmYw8bA-nE2XT0l45JmlWMDQHfKkzdY'
     
     params ={
@@ -29,13 +30,11 @@ def get_lat_long(address, formatted_address):
     res = req.json()
     
     result = res['results'][0]
-    
     lat = result['geometry']['location']['lat']
     long = result['geometry']['location']['lng']
     
-    return [address, lat, long]
-    
-    
+    return [name, lat, long]
+
 @login_required
 def index(request):
     # The following line will get the logged-in user (if there is one) within any view function
@@ -57,13 +56,13 @@ def index(request):
         for customer in customer_weekday_pickup:
             address = customer.address + ' '+ customer.zip_code
             customer_url = urllib.parse.quote(address)
-            customer_geocode = get_lat_long(address, customer_url)
+            customer_geocode = get_lat_long(customer.name, customer_url)
             customer_addresses.append(customer_geocode)
         
         for customer in customer_onetime_pickup:
             address = customer.address + ' '+ customer.zip_code
             customer_url = urllib.parse.quote(address)
-            customer_geocode = get_lat_long(address, customer_url)
+            customer_geocode = get_lat_long(customer.name, customer_url)
             customer_addresses.append(customer_geocode)
         
         data_visualization = [item for item in customer_weekday_pickup]

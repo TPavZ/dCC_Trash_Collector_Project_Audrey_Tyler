@@ -43,3 +43,7 @@ tr, th {
 .table_header, th {
     color: rgb(17, 233, 150);
 }
+
+.row {
+    color: black !important;
+}
