@@ -33,8 +33,8 @@
               {% for customer in customer_weekday_pickup %}
               <tr>            
                 <td scope="row">{{customer.name}}</td>
-                <td><a href="{% url 'employees:pickup_confirm' customer.id %}" class="btn btn-outline-light">Confirm Pickup</a></td>
-                <td><a href="{% url 'employees:customer_address' customer.id %}" class="btn btn-outline-light" target="popup" onClick="window.open('{% url 'employees:pickup_confirm' customer.id %}','popup','width=500, height=400, top=500')">View Address</a></td> 
+                <td><a class="btn btn-outline-light" target="popup" onClick="window.open('{% url 'employees:pickup_confirm' customer.id %}','popup','width=500, height=400, top=500')">Confirm Pickup</a></td>
+                <td><a class="btn btn-outline-light" target="popup" onClick="window.open('{% url 'employees:customer_address' customer.id %}','popup','width=500, height=400, top=500')">View Address</a></td> 
               </tr>          
               {% endfor %}
             </div> 
@@ -55,8 +55,8 @@
             {% for customer in customer_onetime_pickup %}
               <tr>            
                 <th scope="row">{{customer.name}}</th>
-                <td><a href="{% url 'employees:pickup_confirm' customer.id %}" class="btn btn-outline-light">Confirm Pickup</a></td>
-                <td><a href="{% url 'employees:customer_address' customer.id %}" class="btn btn-outline-light" target="popup" onClick="window.open('{% url 'employees:pickup_confirm' customer.id %}','popup','width=500, height=400, top=500')">View Address</a></td> 
+                <td><a class="btn btn-outline-light" target="popup" onClick="window.open('{% url 'employees:pickup_confirm' customer.id %}','popup','width=500, height=400, top=500')">Confirm Pickup</a></td>
+                <td><a class="btn btn-outline-light" target="popup" onClick="window.open('{% url 'employees:customer_address' customer.id %}','popup','width=500, height=400, top=500')">View Address</a></td> 
               </tr>          
               {% endfor %}
           </tbody>
@@ -68,7 +68,7 @@
   <div id="map" style="width: 100%; height: 400px;"></div>
   
   <script type="text/javascript">
-    var locations = {{customer_addresses|safe}};
+    var locations = {{ customer_addresses|safe }};
     console.log(locations)
 
         var map = new google.maps.Map(document.getElementById('map'), {
