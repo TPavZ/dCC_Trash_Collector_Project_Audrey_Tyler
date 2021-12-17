@@ -7,17 +7,16 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-
 <div class="container-fluid">
     <table class="table">
       <h3> Today is
         <script type="text/javascript">
           var myDate = new Date();
           var myDay = myDate.getDay();     
-          var weekday = ['Sunday', 'Monday', 'Tuesday',
-              'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+          var weekday = ['Sunday.', 'Monday.', 'Tuesday.',
+              'Wednesday.', 'Thursday.', 'Friday, TGIF!', 'Saturday.'];
           document.write(weekday[myDay]);
-        </script>. Here are your scheduled pickups:
+        </script> Here are your scheduled pickups:
       </h3>
 
         <thead>
