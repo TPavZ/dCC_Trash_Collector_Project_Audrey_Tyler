@@ -120,9 +120,9 @@ def pickup_confirm(request, customer_id):
             customer_pickup.balance += 20
             customer_pickup.date_of_last_pickup = date.today()
             customer_pickup.save()
-            return HttpResponseRedirect(reverse('employees:index'))
+            return HttpResponse('<script type="text/javascript">window.close(); window.opener.location.reload();</script>')
         else:
-            return HttpResponseRedirect(reverse('employees:index'))
+            return HttpResponse('<script type="text/javascript">window.close();</script>')
     
     else:
         Customer = apps.get_model('customers.Customer')
