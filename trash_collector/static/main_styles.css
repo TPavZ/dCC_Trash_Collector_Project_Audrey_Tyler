@@ -6,6 +6,10 @@ body {
     background-size: cover;    
 }
 
+.navbar-light .navbar-nav .nav-link  {
+    color:rgb(0, 0, 0)
+}
+
 ul {
     list-style-type: none;
 }
@@ -18,17 +22,25 @@ h1 {
     background-color: rgb(248,249,250)
 }
 
+a.btn.btn-outline-light {
+    float: center;
+}
+
 h3 {
+    color: white;
+    font-size:xx-large;
+    float: center;
+    text-align: center;
+}
+
+h4 {
+    color: white;
     float: center;
     text-align: center;
 }
 
 p {
-    color: crimson;
-}
-
-.col-8, #text {
-    color: white;
+    color: rgb(255, 255, 255);    
 }
 
 th {
@@ -37,20 +49,32 @@ th {
 }
 
 .lol {
+    text-align: center;
     color:white;
     font-size: 40%;
 }
 
 td {
-    float: center;
     text-align: center;
 }
 
 
-.table_header, th {
-    color: rgb(17, 233, 150);
+.table_header, th, text {
+    color: rgb(255, 255, 255);
+}
+
+.table_body, td, text {
+    color: rgb(255, 255, 255);
+    font-size: larger;
+    font-weight: 300;
+    
 }
 
 .map {
     color: black !important;
+}
+
+form {
+    color: white;
+
 }

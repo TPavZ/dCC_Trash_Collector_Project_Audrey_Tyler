@@ -14,8 +14,10 @@
   <p><a href="{% url 'logout' %}">Log Out</a></p>
 {% else %}
   <p>You are not logged in. Please log in or create an account.</p>
+<div class="button">
   <a href="{% url 'login' %}" class="btn btn-outline-light">Log In</a>
   <a href="{% url 'accounts:register' %}" class="btn btn-outline-light">Sign Up</a>
+</div>
 {% endif %}
 {% endblock %}
 

@@ -4,19 +4,21 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-    <h1>{{customer.name}} location: </h1>
-    <p> Address & Zip Code: {{customer_full_address}}</p>
+    <h1>Address On File For <strong>{{customer.name}}</strong>:</h1>
+    <p>{{customer.name}}'s Home Address & Zip Code: {{customer_full_address}}</p>
 
     <p>
       <iframe
-      width="450"
+      width="100%"
       height="250"
       frameborder="0" style="border:0"
       src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCv19bQtOUf8W5Fmsym-RSswEVe7w3aXYw&q={{customer_url}}" allowfullscreen>
       </iframe>
     </p>
-
-    <a href="{% url 'employees:index' %}" class="btn btn-outline-light">Home</a>
+    <div class="button">      
+      <button type="button" class="btn btn-outline-light" onclick="javascript:window.close()">Close</button>
+      <a href="{% url 'employees:index' %}" class="btn btn-outline-light">Home</a>
+    </div>
     
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
