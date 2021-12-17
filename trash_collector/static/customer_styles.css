@@ -1,3 +1,86 @@
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.288), rgba(0, 0, 0, 0.534)), url(/static/images/jilbert-ebrahimi-b0p818k8Ok8-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;    
+}
+
+.navbar-light .navbar-nav .nav-link  {
+    color:rgb(0, 0, 0)
+}
+
+ul {
+    list-style-type: none;
+}
+
 h1 {
-    color: teal;
+    color: rgb(255, 255, 255);
+    text-decoration: underline 1px;
+    font-weight: 200;
+    float: center;
+    text-align: center;
+}
+
+a.btn.btn-outline-light {
+    float: center;
+}
+
+h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: white;
+    font-size:xx-large;
+    float: center;
+    text-align: center;
+}
+
+h4 {
+    color: white;
+    float: center;
+    text-align: center;
+}
+
+p {
+    color: rgb(255, 255, 255);    
+}
+
+th {
+    text-align: center;
+    color:rgb(0, 0, 0)
+}
+
+.lol {
+    text-align: center;
+    color:white;
+    font-size: 40%;
+}
+
+td {
+    text-align: center;
+}
+
+
+.table_header, th, text {
+    color: rgb(255, 255, 255);
+}
+
+.table_body, td, text {
+    color: rgb(255, 255, 255);
+    font-size: larger;
+    font-weight: 300;
+    
+}
+
+.map {
+    color: black !important;
+}
+
+form {
+    color: white;
+
+}
+
+.row {
+    color:rgb(255, 255, 255)
 }

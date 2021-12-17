@@ -24,7 +24,9 @@
           <br>
           <br>
           {% endif %}
-        <button><a href="{% url 'customers:checkout' %}">Pay Balance</a></button>
+        <div>  
+          <a href="{% url 'customers:checkout' %}" class="btn btn-outline-light">Pay Balance</a>
+        </div>
 
   {% else %}
     <p>You are at the customer index, but you are not logged in.</p>
