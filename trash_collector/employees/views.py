@@ -9,7 +9,7 @@ from django.apps import apps
 from .models import Employee
 import urllib.parse #will parse address into url-encoded string
 import json
-import requests
+import requests 
 
 #from trash_collector.customers.models import Customer
 
