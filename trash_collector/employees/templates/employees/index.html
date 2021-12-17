@@ -54,7 +54,7 @@
           <tbody>
             {% for customer in customer_onetime_pickup %}
               <tr>            
-                <th scope="row">{{customer.name}}</th>
+                <td scope="row">{{customer.name}}</td>
                 <td><a class="btn btn-outline-light" target="popup" onClick="window.open('{% url 'employees:pickup_confirm' customer.id %}','popup','width=500, height=400, top=500')">Confirm Pickup</a></td>
                 <td><a class="btn btn-outline-light" target="popup" onClick="window.open('{% url 'employees:customer_address' customer.id %}','popup','width=500, height=400, top=500')">View Address</a></td> 
               </tr>          
