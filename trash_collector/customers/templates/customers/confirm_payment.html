@@ -1,0 +1,23 @@
+{% extends 'customers\customer_base.html' %}
+
+{% block title %} Customer Home {% endblock %}
+
+{% block header %} Customer Portal {% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+    Hello {{ logged_in_customer.name }}!<br />
+    Address: {{ logged_in_customer.address }} {{logged_in_customer.zip_code }}<br />
+    Payment of ${{payment}} successfully completed.
+    Current balance: ${{logged_in_customer.balance}}0
+    <br />
+    <br />
+
+{% else %}
+    <p>You are at the customer index, but you are not logged in.</p>
+    <a href="{% url 'login' %}">Log In</a>
+    <a href="{% url 'accounts:register' %}">Sign Up</a>
+{% endif %}
+
+<button><a href="{% url 'customers:index' %}">Back to Home</a></button>
+{% endblock %}

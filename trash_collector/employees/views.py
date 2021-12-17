@@ -18,17 +18,15 @@ import requests
 # TODO: Create a function for each path created in employees/urls.py. Each will need a template as well.
 
 def get_lat_long(name, formatted_address):
-    GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?' + 'address=' + formatted_address + '&key=AIzaSyAdcmYw8bA-nE2XT0l45JmlWMDQHfKkzdY'
+    GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + formatted_address + '&key=AIzaSyAdcmYw8bA-nE2XT0l45JmlWMDQHfKkzdY'
     
     params ={
         'address': formatted_address,
-        'sensor': 'false',
         'region': 'United States'
     }
     
     req = requests.get(GOOGLE_MAPS_API_URL, params=params)
     res = req.json()
-    
     result = res['results'][0]
     lat = result['geometry']['location']['lat']
     long = result['geometry']['location']['lng']

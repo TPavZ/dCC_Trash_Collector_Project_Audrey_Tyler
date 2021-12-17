@@ -4,8 +4,8 @@ from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from datetime import date
-
 from .models import Customer
+import json
 
 @login_required
 def index(request):
@@ -91,3 +91,40 @@ def edit_profile(request):
             'logged_in_customer': logged_in_customer
         }
         return render(request, 'customers/edit_profile.html', context)
+
+@login_required
+def checkout(request):
+    logged_in_user = request.user
+    logged_in_customer = Customer.objects.get(user=logged_in_user)
+    if request.method == "POST":
+        payment_from_form = int(request.POST.get('amount'))
+
+        context ={
+            'logged_in_customer': logged_in_customer,
+            'payment_amount': payment_from_form,
+            'payment_amount_json': json.dumps(payment_from_form)
+        }
+        
+        return render (request, 'customers/checkout.html', context)
+    else:
+        context ={
+            'logged_in_customer': logged_in_customer,
+        }
+        
+        return render (request, 'customers/checkout.html', context)
+
+@login_required
+def confirm_payment(request, amount):
+    logged_in_user = request.user
+    logged_in_customer = Customer.objects.get(user=logged_in_user)
+    payment = int(amount)
+    logged_in_customer.balance -= payment
+    logged_in_customer.save()
+    
+    context ={
+        'logged_in_customer': logged_in_customer,
+        'payment': payment
+    }
+    
+    return render (request, 'customers/confirm_payment.html', context)
+    
